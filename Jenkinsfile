@@ -11,7 +11,14 @@ pipeline {
         stage('Build and Deploy with Maven') {
             steps {
                 script {
-                    sh 'mvn deploy'
+                    // Execute 'mvn deploy' command
+                sh 'mvn deploy'
+
+                // Print current working directory
+                sh 'pwd'
+
+                // List contents of the 'target' directory
+                sh 'ls -l target/'
                 }
             }
         }
