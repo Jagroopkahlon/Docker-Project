@@ -63,9 +63,23 @@ pipeline {
                 }
             }
         }
+        stage('Stop and Remove Docker Container') {
+            steps {
+                script {
+                    sh 'docker stop petclinic'
+                    sh 'docker rm petclinic'
+                }
+            }
+        }
 
-       
-
+        stage('Remove Docker Images') {
+            steps {
+                script {
+                    sh 'docker rmi ${DOCKER_IMAGE}'
+                    sh 'docker rmi ${DOCKER_TAG}'
+                }
+            }
+        }
         stage('List Docker Images') {
             steps {
                 script {
